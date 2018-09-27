@@ -16,10 +16,10 @@ class Math_Part(Ui_MainWindow):
         self.tableWidget.setRowCount(n+1)
         for i in range(n+1):
             self.tableWidget.setItem(i, 0, QtWidgets.QTableWidgetItem(str(i)))
-        def abs_solution(x, I):
-            return (((E * R * math.sin(w * x))/((L**2)*(w**2) + (R**2))) - ((E * L * w * math.cos(w * x))/((L**2)*(w**2) + (R**2))) + (sol_const(I) * math.exp((-(R * x)) / L)))
-        def sol_const(I):
-            return I + E * L * w / ((L**2)*(w**2) + (R**2))
+        def abs_solution(x, const):
+            return (((E * R * math.sin(w * x))/((L**2)*(w**2) + (R**2))) - ((E * L * w * math.cos(w * x))/((L**2)*(w**2) + (R**2))) + (const * math.exp((-(R * x)) / L)))
+        def sol_const(x, I):
+            return (I + (E * L * w * math.cos(w * x)/ ((L**2)*(w**2) + (R**2))) - (E * L * w * math.sin(w * x)/ ((L**2)*(w**2) + (R**2))))/ math.exp((-(R * x)) / L)
         def f(x, I):
             return (E * (math.sin(w * x)) - R * I) / L
 
@@ -77,7 +77,8 @@ class Math_Part(Ui_MainWindow):
 
         ax = self.figure.add_subplot(111)
         ax.axis([-10, 20, -10, 20])
-        abs_x, abs_I, I0 = x, abs_solution(x, I), I
+        const = sol_const(x, I)
+        abs_x, abs_I, I0 = x, abs_solution(x, const), I
         for i in range(n):
             old_abs_x, old_abs_I = abs_x, abs_I
             self.tableWidget.setItem(i, 7, QtWidgets.QTableWidgetItem(str(old_abs_I)))
@@ -88,7 +89,7 @@ class Math_Part(Ui_MainWindow):
             x, I = new_point(h, old_x, old_I, i + 1)
             ax.plot([old_x, x], [old_I, I], '-b')
             abs_x = x
-            abs_I = abs_solution(abs_x, I0)
+            abs_I = abs_solution(abs_x, const)
             ax.plot([old_abs_x, abs_x], [old_abs_I, abs_I], '-r')
         self.tableWidget.setItem(n, 7, QtWidgets.QTableWidgetItem(str(abs_I)))
         self.tableWidget.setItem(n, 8, QtWidgets.QTableWidgetItem(str(abs_x)))
