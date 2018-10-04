@@ -4,18 +4,34 @@ import pylab
 from matplotlib import mlab
 from matplotlib.figure import Figure
 from label_for_graphic import Ui_MainWindow
+from tab_widg import Ui_MainWindow_tab
 from PyQt5.QtWidgets import QApplication, QMainWindow
 from PyQt5 import QtWidgets, QtGui, QtCore
 from main import MyWin
+from main import second_window
 #######################################
 class Math_Part(Ui_MainWindow):
-
-    def bilding(self, n, L, I, h, x, R, w, E):
-        eps = 0.00001
+    def bilding(self, eps, n, L, I, h, x, R, w, E, secwin):
         print(L, R, I, h, x, n, E, w)
-        self.tableWidget.setRowCount(n+1)
+        self.progressBar.setMinimum(0)
+        self.progressBar.setMaximum(n)
+        secwin.tableWidget.setRowCount(n+1)
+        secwin.label.setText("Начальное х0 = " + str(x))
+        secwin.label_2.setText("Начальное I0 = " + str(I))
+        secwin.label_3.setText("Коэф. самоинд. L = " + str(L))
+        secwin.label_4.setText("Сопротивление R = " + str(R))
+        secwin.label_5.setText("Амплитуда E0 = " + str(E))
+        secwin.label_6.setText("Макс. число шагов N = " + str(n))
+        secwin.label_7.setText("Шаг h = " + str(h))
+        secwin.label_8.setText("Контроль ЛП = " + str(eps))
+        secwin.label_9.setText("Частота w = " + str(w))
+        xlist = []
+        Ilist = []
+        L_Elist = []
+        Mark_list = []
+        hlist = []
         for i in range(n+1):
-            self.tableWidget.setItem(i, 0, QtWidgets.QTableWidgetItem(str(i)))
+            secwin.tableWidget.setItem(i, 0, QtWidgets.QTableWidgetItem(str(i)))
         def abs_solution(x, const):
             return (((E * R * math.sin(w * x))/((L**2)*(w**2) + (R**2))) - ((E * L * w * math.cos(w * x))/((L**2)*(w**2) + (R**2))) + (const * math.exp((-(R * x)) / L)))
         def sol_const(x, I):
@@ -52,49 +68,65 @@ class Math_Part(Ui_MainWindow):
 
             add_I = next_point_I(add_I, add_x, step / 2)
             add_x = next_point_x(step / 2, add_x)
-
             S = loc_err(new_I, add_I)
 
-            self.tableWidget.setItem(number_r, 3, QtWidgets.QTableWidgetItem(str(add_I)))
-            self.tableWidget.setItem(number_r, 4, QtWidgets.QTableWidgetItem(str(add_x)))
-            self.tableWidget.setItem(number_r, 5, QtWidgets.QTableWidgetItem(str(h)))
-            self.tableWidget.setItem(number_r, 6, QtWidgets.QTableWidgetItem(str(S)))
+            secwin.tableWidget.setItem(number_r, 3, QtWidgets.QTableWidgetItem(str(add_I)))
+            secwin.tableWidget.setItem(number_r, 4, QtWidgets.QTableWidgetItem(str(abs_x)))
+            secwin.tableWidget.setItem(number_r, 5, QtWidgets.QTableWidgetItem(str(h)))
+            hlist.append(h)
+            Mark_list.append(S)
+            secwin.tableWidget.setItem(number_r, 6, QtWidgets.QTableWidgetItem(str(S)))
 
             print("S####: ", S)
             print("exp###: ", eps / 16, eps)
             print("####", h)
-            if abs(S) >= eps / 16 and abs(S) <= eps:
-                print("save point")
+            if self.checkBox.isChecked():
+                if abs(S) >= eps / 16 and abs(S) <= eps:
+                    print("save point")
+                    return new_x, new_I
+                if abs(S) < eps / 16:
+                    print("save point, but change step")
+                    h *= 2
+                    return new_x, new_I
+                if abs(S) > eps:
+                    print("Fail")
+                    h /= 2
+                    return new_point(h, x, I, number_r)
+            else:
                 return new_x, new_I
-            if abs(S) < eps / 16:
-                print("save point, but change step")
-                h *= 2
-                return new_x, new_I
-            if abs(S) > eps:
-                print("Fail")
-                h /= 2
-                return new_point(h, x, I, number_r)
 
         ax = self.figure.add_subplot(111)
-        ax.axis([-10, 20, -10, 20])
+        ax.axis([-5, 5, -5, 5])
         const = sol_const(x, I)
-        abs_x, abs_I, I0 = x, abs_solution(x, const), I
+        abs_x, abs_I = x, abs_solution(x, const)
         for i in range(n):
             old_abs_x, old_abs_I = abs_x, abs_I
-            self.tableWidget.setItem(i, 7, QtWidgets.QTableWidgetItem(str(old_abs_I)))
-            self.tableWidget.setItem(i, 8, QtWidgets.QTableWidgetItem(str(old_abs_x)))
+            secwin.tableWidget.setItem(i, 7, QtWidgets.QTableWidgetItem(str(old_abs_I)))
+            secwin.tableWidget.setItem(i, 8, QtWidgets.QTableWidgetItem(str(old_abs_x)))
+            L_Elist.append(abs(abs_I - I))
+            secwin.tableWidget.setItem(i, 9, QtWidgets.QTableWidgetItem(str(abs(abs_I - I))))
             old_x, old_I = x, I
-            self.tableWidget.setItem(i, 1, QtWidgets.QTableWidgetItem(str(old_I)))
-            self.tableWidget.setItem(i, 2, QtWidgets.QTableWidgetItem(str(old_x)))
+            xlist.append(x)
+            Ilist.append(I)
+            secwin.tableWidget.setItem(i, 1, QtWidgets.QTableWidgetItem(str(old_I)))
+            secwin.tableWidget.setItem(i, 2, QtWidgets.QTableWidgetItem(str(old_x)))
             x, I = new_point(h, old_x, old_I, i + 1)
             ax.plot([old_x, x], [old_I, I], '-b')
+            self.progressBar.setValue(i + 1)
             abs_x = x
             abs_I = abs_solution(abs_x, const)
             ax.plot([old_abs_x, abs_x], [old_abs_I, abs_I], '-r')
-        self.tableWidget.setItem(n, 7, QtWidgets.QTableWidgetItem(str(abs_I)))
-        self.tableWidget.setItem(n, 8, QtWidgets.QTableWidgetItem(str(abs_x)))
-        self.tableWidget.setItem(n, 1, QtWidgets.QTableWidgetItem(str(I)))
-        self.tableWidget.setItem(n, 2, QtWidgets.QTableWidgetItem(str(x)))
+        secwin.tableWidget.setItem(n, 7, QtWidgets.QTableWidgetItem(str(abs_I)))
+        secwin.tableWidget.setItem(n, 8, QtWidgets.QTableWidgetItem(str(abs_x)))
+        secwin.tableWidget.setItem(n, 1, QtWidgets.QTableWidgetItem(str(I)))
+        secwin.tableWidget.setItem(n, 2, QtWidgets.QTableWidgetItem(str(x)))
+        secwin.tableWidget.setItem(n, 9, QtWidgets.QTableWidgetItem(str(abs(abs_I - I))))
+
+        secwin.label_10.setText("Max I = " + str(max(Ilist)))
+        secwin.label_11.setText("Max x = " + str(max(xlist)))
+        secwin.label_12.setText("Max h = " + str(max(hlist)))
+        secwin.label_13.setText("Max |abs_v-number_v| = " + str(round(max(L_Elist), 5)))
+        secwin.label_14.setText("Max ОЛП = " + str(round(max(Mark_list), 5)))
         ax.grid(True)
         self.canvas.draw()
         #координата х численного решения с некоторого шага отличается от координаты х
