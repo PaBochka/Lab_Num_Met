@@ -27,7 +27,7 @@ class Ui_MainWindow(object):
         self.centralwidget.setSizePolicy(sizePolicy)
         self.centralwidget.setObjectName("centralwidget")
         self.pushButton = QtWidgets.QPushButton(self.centralwidget)
-        self.pushButton.setGeometry(QtCore.QRect(10, 440, 151, 25))
+        self.pushButton.setGeometry(QtCore.QRect(10, 490, 201, 61))
         self.pushButton.setObjectName("pushButton")
         self.textBrowser_2 = QtWidgets.QTextBrowser(self.centralwidget)
         self.textBrowser_2.setGeometry(QtCore.QRect(640, 30, 381, 101))
@@ -44,7 +44,7 @@ class Ui_MainWindow(object):
         self.label_9.setGeometry(QtCore.QRect(540, 10, 571, 21))
         self.label_9.setObjectName("label_9")
         self.verticalLayoutWidget_2 = QtWidgets.QWidget(self.centralwidget)
-        self.verticalLayoutWidget_2.setGeometry(QtCore.QRect(180, 10, 160, 181))
+        self.verticalLayoutWidget_2.setGeometry(QtCore.QRect(160, 10, 151, 181))
         self.verticalLayoutWidget_2.setObjectName("verticalLayoutWidget_2")
         self.verticalLayout_5 = QtWidgets.QVBoxLayout(self.verticalLayoutWidget_2)
         self.verticalLayout_5.setContentsMargins(0, 0, 0, 0)
@@ -64,7 +64,7 @@ class Ui_MainWindow(object):
         self.textEdit_10.setObjectName("textEdit_10")
         self.verticalLayout_5.addWidget(self.textEdit_10)
         self.verticalLayoutWidget = QtWidgets.QWidget(self.centralwidget)
-        self.verticalLayoutWidget.setGeometry(QtCore.QRect(10, 10, 160, 421))
+        self.verticalLayoutWidget.setGeometry(QtCore.QRect(10, 10, 141, 341))
         self.verticalLayoutWidget.setObjectName("verticalLayoutWidget")
         self.verticalLayout_4 = QtWidgets.QVBoxLayout(self.verticalLayoutWidget)
         self.verticalLayout_4.setContentsMargins(0, 0, 0, 0)
@@ -99,14 +99,8 @@ class Ui_MainWindow(object):
         self.textEdit_3 = QtWidgets.QTextEdit(self.verticalLayoutWidget)
         self.textEdit_3.setObjectName("textEdit_3")
         self.verticalLayout_4.addWidget(self.textEdit_3)
-        self.label_12 = QtWidgets.QLabel(self.verticalLayoutWidget)
-        self.label_12.setObjectName("label_12")
-        self.verticalLayout_4.addWidget(self.label_12)
-        self.textEdit_5 = QtWidgets.QTextEdit(self.verticalLayoutWidget)
-        self.textEdit_5.setObjectName("textEdit_5")
-        self.verticalLayout_4.addWidget(self.textEdit_5)
         self.verticalLayoutWidget_3 = QtWidgets.QWidget(self.centralwidget)
-        self.verticalLayoutWidget_3.setGeometry(QtCore.QRect(350, 10, 160, 211))
+        self.verticalLayoutWidget_3.setGeometry(QtCore.QRect(320, 10, 151, 211))
         self.verticalLayoutWidget_3.setObjectName("verticalLayoutWidget_3")
         self.verticalLayout_6 = QtWidgets.QVBoxLayout(self.verticalLayoutWidget_3)
         self.verticalLayout_6.setContentsMargins(0, 0, 0, 0)
@@ -125,13 +119,34 @@ class Ui_MainWindow(object):
         self.textEdit_4 = QtWidgets.QTextEdit(self.verticalLayoutWidget_3)
         self.textEdit_4.setObjectName("textEdit_4")
         self.verticalLayout_6.addWidget(self.textEdit_4)
-        self.checkBox = QtWidgets.QCheckBox(self.centralwidget)
-        self.checkBox.setGeometry(QtCore.QRect(180, 220, 161, 31))
-        self.checkBox.setObjectName("checkBox")
         self.progressBar = QtWidgets.QProgressBar(self.centralwidget)
-        self.progressBar.setGeometry(QtCore.QRect(10, 470, 521, 25))
+        self.progressBar.setGeometry(QtCore.QRect(10, 570, 521, 25))
         self.progressBar.setProperty("value", 0)
         self.progressBar.setObjectName("progressBar")
+        self.verticalLayoutWidget_4 = QtWidgets.QWidget(self.centralwidget)
+        self.verticalLayoutWidget_4.setGeometry(QtCore.QRect(160, 240, 151, 241))
+        self.verticalLayoutWidget_4.setObjectName("verticalLayoutWidget_4")
+        self.verticalLayout = QtWidgets.QVBoxLayout(self.verticalLayoutWidget_4)
+        self.verticalLayout.setContentsMargins(0, 0, 0, 0)
+        self.verticalLayout.setObjectName("verticalLayout")
+        self.label_14 = QtWidgets.QLabel(self.verticalLayoutWidget_4)
+        self.label_14.setObjectName("label_14")
+        self.verticalLayout.addWidget(self.label_14)
+        self.textEdit_12 = QtWidgets.QTextEdit(self.verticalLayoutWidget_4)
+        self.textEdit_12.setObjectName("textEdit_12")
+        self.verticalLayout.addWidget(self.textEdit_12)
+        self.label_12 = QtWidgets.QLabel(self.verticalLayoutWidget_4)
+        self.label_12.setObjectName("label_12")
+        self.verticalLayout.addWidget(self.label_12)
+        self.textEdit_5 = QtWidgets.QTextEdit(self.verticalLayoutWidget_4)
+        self.textEdit_5.setObjectName("textEdit_5")
+        self.verticalLayout.addWidget(self.textEdit_5)
+        self.checkBox = QtWidgets.QCheckBox(self.verticalLayoutWidget_4)
+        self.checkBox.setObjectName("checkBox")
+        self.verticalLayout.addWidget(self.checkBox)
+        self.checkBox_2 = QtWidgets.QCheckBox(self.verticalLayoutWidget_4)
+        self.checkBox_2.setObjectName("checkBox_2")
+        self.verticalLayout.addWidget(self.checkBox_2)
         MainWindow.setCentralWidget(self.centralwidget)
         self.statusbar = QtWidgets.QStatusBar(MainWindow)
         self.statusbar.setObjectName("statusbar")
@@ -189,12 +204,6 @@ class Ui_MainWindow(object):
 "p, li { white-space: pre-wrap; }\n"
 "</style></head><body style=\" font-family:\'Ubuntu\'; font-size:11pt; font-weight:400; font-style:normal;\">\n"
 "<p style=\" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;\">4</p></body></html>"))
-        self.label_12.setText(_translate("MainWindow", "<html><head/><body><p>Контроль ЛП <span style=\" font-family:\'arial,sans-serif\'; font-size:12pt; font-weight:600; color:#222222; background-color:#ffffff;\">Ɛ</span><span style=\" font-size:12pt; font-weight:600;\""))
-        self.textEdit_5.setHtml(_translate("MainWindow", "<!DOCTYPE HTML PUBLIC \"-//W3C//DTD HTML 4.0//EN\" \"http://www.w3.org/TR/REC-html40/strict.dtd\">\n"
-"<html><head><meta name=\"qrichtext\" content=\"1\" /><style type=\"text/css\">\n"
-"p, li { white-space: pre-wrap; }\n"
-"</style></head><body style=\" font-family:\'Ubuntu\'; font-size:11pt; font-weight:400; font-style:normal;\">\n"
-"<p style=\" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;\">0.0001</p></body></html>"))
         self.label_10.setText(_translate("MainWindow", "<html><head/><body><p>Начальное значение </p><p>времени <span style=\" font-size:12pt; font-weight:600;\">x</span><span style=\" font-size:12pt; font-weight:600; vertical-align:sub;\">0</span></p></body></html>"))
         self.textEdit_7.setHtml(_translate("MainWindow", "<!DOCTYPE HTML PUBLIC \"-//W3C//DTD HTML 4.0//EN\" \"http://www.w3.org/TR/REC-html40/strict.dtd\">\n"
 "<html><head><meta name=\"qrichtext\" content=\"1\" /><style type=\"text/css\">\n"
@@ -207,5 +216,18 @@ class Ui_MainWindow(object):
 "p, li { white-space: pre-wrap; }\n"
 "</style></head><body style=\" font-family:\'Ubuntu\'; font-size:11pt; font-weight:400; font-style:normal;\">\n"
 "<p style=\" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;\">5</p></body></html>"))
+        self.label_14.setText(_translate("MainWindow", "<html><head/><body><p>Контроль</p><p>выхода за границу <span style=\" font-size:12pt; font-weight:600;\">b</span></p></body></html>"))
+        self.textEdit_12.setHtml(_translate("MainWindow", "<!DOCTYPE HTML PUBLIC \"-//W3C//DTD HTML 4.0//EN\" \"http://www.w3.org/TR/REC-html40/strict.dtd\">\n"
+"<html><head><meta name=\"qrichtext\" content=\"1\" /><style type=\"text/css\">\n"
+"p, li { white-space: pre-wrap; }\n"
+"</style></head><body style=\" font-family:\'Ubuntu\'; font-size:11pt; font-weight:400; font-style:normal;\">\n"
+"<p style=\" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;\">5</p></body></html>"))
+        self.label_12.setText(_translate("MainWindow", "<html><head/><body><p>Контроль ЛП <span style=\" font-family:\'arial,sans-serif\'; font-size:12pt; font-weight:600; color:#222222; background-color:#ffffff;\">Ɛ</span><span style=\" font-size:12pt; font-weight:600;\""))
+        self.textEdit_5.setHtml(_translate("MainWindow", "<!DOCTYPE HTML PUBLIC \"-//W3C//DTD HTML 4.0//EN\" \"http://www.w3.org/TR/REC-html40/strict.dtd\">\n"
+"<html><head><meta name=\"qrichtext\" content=\"1\" /><style type=\"text/css\">\n"
+"p, li { white-space: pre-wrap; }\n"
+"</style></head><body style=\" font-family:\'Ubuntu\'; font-size:11pt; font-weight:400; font-style:normal;\">\n"
+"<p style=\" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;\">0.0001</p></body></html>"))
         self.checkBox.setText(_translate("MainWindow", "Контроль ЛП"))
+        self.checkBox_2.setText(_translate("MainWindow", "Очистка графика"))
 

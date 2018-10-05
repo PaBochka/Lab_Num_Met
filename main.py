@@ -45,8 +45,9 @@ class MyWin(QMainWindow, Ui_MainWindow):
         E = float(self.textEdit_6.toPlainText())
         w = float(self.textEdit_3.toPlainText())
         eps = float(self.textEdit_5.toPlainText())
+        b = float(self.textEdit_12.toPlainText())
         self.sec_win = second_window(self)
-        Math_Part.Math_Part.bilding(self, eps, n, L, I0, h, x0, R, w, E, self.sec_win)
+        Math_Part.Math_Part.bilding(self, eps, n, L, I0, h, x0, R, w, E, self.sec_win, b)
         self.sec_win.show()
 
 class second_window(QMainWindow, Ui_MainWindow_tab):
