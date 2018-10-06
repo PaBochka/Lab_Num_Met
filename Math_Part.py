@@ -13,7 +13,6 @@ from main import second_window
 class Math_Part(Ui_MainWindow):
     def bilding(self, eps, n, L, I, h, x, R, w, E, secwin, b):
         print(L, R, I, h, x, n, E, w)
-        flag = False
         cnt_g, cnt_l = 0, 0
         cnt_l_list, cnt_g_list = [], []
         self.progressBar.setMinimum(0)
@@ -70,7 +69,6 @@ class Math_Part(Ui_MainWindow):
         ##################################################
         def new_point(step, x, I, number_r):
             nonlocal h
-            nonlocal flag
             new_I = next_point_I(I, x, step)
             new_x = next_point_x(step, x)
 
@@ -83,7 +81,6 @@ class Math_Part(Ui_MainWindow):
 
             secwin.tableWidget.setItem(number_r, 3, QtWidgets.QTableWidgetItem(str(add_I)))
             secwin.tableWidget.setItem(number_r, 4, QtWidgets.QTableWidgetItem(str(abs_x)))
-            secwin.tableWidget.setItem(number_r, 5, QtWidgets.QTableWidgetItem(str(h)))
             secwin.tableWidget.setItem(number_r, 6, QtWidgets.QTableWidgetItem(str(S)))
 
             print("S####: ", S)
@@ -101,9 +98,6 @@ class Math_Part(Ui_MainWindow):
                     nonlocal cnt_g
                     cnt_g += 1
                     cnt_g_list.append(cnt_g)
-                    if flag == False:
-                        secwin.tableWidget.setItem(number_r, 11, QtWidgets.QTableWidgetItem(str(cnt_g)))
-                    flag = False
                     hlist.append(h)
                     Mark_list.append(S)
                     return new_x, new_I
@@ -113,9 +107,6 @@ class Math_Part(Ui_MainWindow):
                     nonlocal cnt_l
                     cnt_l += 1
                     cnt_l_list.append(cnt_l)
-                    if flag == False:
-                        secwin.tableWidget.setItem(number_r, 10, QtWidgets.QTableWidgetItem(str(cnt_l)))
-                    flag = True
                     return new_point(h, x, I, number_r)
             else:
                 hlist.append(h)
@@ -141,6 +132,9 @@ class Math_Part(Ui_MainWindow):
             Ilist.append(I)
             secwin.tableWidget.setItem(i, 1, QtWidgets.QTableWidgetItem(str(old_I)))
             secwin.tableWidget.setItem(i, 2, QtWidgets.QTableWidgetItem(str(old_x)))
+            secwin.tableWidget.setItem(i, 5, QtWidgets.QTableWidgetItem(str(h)))
+            secwin.tableWidget.setItem(i, 10, QtWidgets.QTableWidgetItem(str(cnt_l)))
+            secwin.tableWidget.setItem(i, 11, QtWidgets.QTableWidgetItem(str(cnt_g)))
             x, I = new_point(h, old_x, old_I, i + 1)
             if x > b:
                 #self.progressBar.setValue(100)
@@ -156,14 +150,21 @@ class Math_Part(Ui_MainWindow):
         secwin.tableWidget.setItem(n, 1, QtWidgets.QTableWidgetItem(str(I)))
         secwin.tableWidget.setItem(n, 2, QtWidgets.QTableWidgetItem(str(x)))
         secwin.tableWidget.setItem(n, 9, QtWidgets.QTableWidgetItem(str(abs(abs_I - I))))
+        secwin.tableWidget.setItem(n, 5, QtWidgets.QTableWidgetItem(str(h)))
+        secwin.tableWidget.setItem(n, 10, QtWidgets.QTableWidgetItem(str(cnt_l)))
+        secwin.tableWidget.setItem(n, 11, QtWidgets.QTableWidgetItem(str(cnt_g)))
 
         secwin.label_10.setText("Max I = " + str(max(Ilist)))
         secwin.label_11.setText("Max x = " + str(max(xlist)))
         secwin.label_12.setText("Max h = " + str(max(hlist)))
         secwin.label_13.setText("Max Гл. Погр. = " + str(round(max(L_Elist), 5)))
         secwin.label_14.setText("Max ОЛП = " + str(round(max(Mark_list), 5)))
-        secwin.label_16.setText("Общ кол-во увел. = " + str(max(cnt_g_list)))
-        secwin.label_17.setText("Общ кол-во уменьш. = " + str(max(cnt_l_list)))
+        if self.checkBox.isChecked():
+            secwin.label_16.setText("Общ кол-во увел. = " + str(max(cnt_g_list)))
+            secwin.label_17.setText("Общ кол-во уменьш. = " + str(max(cnt_l_list)))
+        else:
+            secwin.label_16.setText("Общ кол-во увел. = -- ")
+            secwin.label_17.setText("Общ кол-во уменьш. = -- ")
         ax.grid(True)
         self.canvas.draw()
         #координата х численного решения с некоторого шага отличается от координаты х
