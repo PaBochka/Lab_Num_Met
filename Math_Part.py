@@ -14,6 +14,7 @@ class Math_Part(Ui_MainWindow):
     def bilding(self, eps, n, L, I, h, x, R, w, E, secwin, b):
         print(L, R, I, h, x, n, E, w)
         cnt_g, cnt_l = 0, 0
+        x0, I0 = x, I
         cnt_l_list, cnt_g_list = [], []
         self.progressBar.setMinimum(0)
         self.progressBar.setMaximum(n)
@@ -28,11 +29,10 @@ class Math_Part(Ui_MainWindow):
         secwin.label_8.setText("Контроль ЛП = " + str(eps))
         secwin.label_9.setText("Частота w = " + str(w))
         secwin.label_15.setText("Выход на границу = " + str(b))
-        xlist = []
-        Ilist = []
-        L_Elist = []
-        Mark_list = []
-        hlist = []
+        xlist, Ilist, L_Elist, Mark_list, hlist = [], [], [], [], []
+        xlist.append(x)
+        Ilist.append(I)
+        hlist.append(h)
         for i in range(n + 1):
             secwin.tableWidget.setItem(i, 0, QtWidgets.QTableWidgetItem(str(i)))
 
@@ -117,7 +117,7 @@ class Math_Part(Ui_MainWindow):
         if self.checkBox_2.isChecked():
             ax.clear()
             ax = self.figure.add_subplot(111)
-        ax.axis([-5, 5, -5, 5])
+        ax.axis([-1, 6, -1, 6])
         color = '-b' if self.checkBox.isChecked() else '-g'
         const = sol_const(x, I)
         abs_x, abs_I = x, abs_solution(x, const)
@@ -139,11 +139,11 @@ class Math_Part(Ui_MainWindow):
             if x > b:
                 #self.progressBar.setValue(100)
                 break
-            ax.plot([old_x, x], [old_I, I], color)
+            ax.plot([old_x, x], [old_I, I], color, label = ["number", x0, I0])
             self.progressBar.setValue(i + 1)
             abs_x = x
             abs_I = abs_solution(abs_x, const)
-            ax.plot([old_abs_x, abs_x], [old_abs_I, abs_I], '-r')
+            ax.plot([old_abs_x, abs_x], [old_abs_I, abs_I], 'r--', markersize = 0.5, label = ["absolute", x0, I0])
         #self.progressBar.setValue(100)
         secwin.tableWidget.setItem(n, 7, QtWidgets.QTableWidgetItem(str(abs_I)))
         secwin.tableWidget.setItem(n, 8, QtWidgets.QTableWidgetItem(str(abs_x)))
@@ -159,14 +159,23 @@ class Math_Part(Ui_MainWindow):
         secwin.label_12.setText("Max h = " + str(max(hlist)))
         secwin.label_13.setText("Max Гл. Погр. = " + str(round(max(L_Elist), 5)))
         secwin.label_14.setText("Max ОЛП = " + str(round(max(Mark_list), 5)))
+        secwin.label_16.setText("Min h = " + str(min(hlist)))
+        secwin.label_17.setText("Min Гл. Погр. = " + str(round(min(L_Elist), 5)))
+        secwin.label_18.setText("Min ОЛП = " + str(round(min(Mark_list), 5)))
         if self.checkBox.isChecked():
-            secwin.label_16.setText("Общ кол-во увел. = " + str(max(cnt_g_list)))
-            secwin.label_17.setText("Общ кол-во уменьш. = " + str(max(cnt_l_list)))
+            secwin.label_19.setText("Общ кол-во увел. = " + str(max(cnt_g_list)))
+            secwin.label_20.setText("Общ кол-во уменьш. = " + str(max(cnt_l_list)))
         else:
-            secwin.label_16.setText("Общ кол-во увел. = -- ")
-            secwin.label_17.setText("Общ кол-во уменьш. = -- ")
+            secwin.label_19.setText("Общ кол-во увел. = -- ")
+            secwin.label_20.setText("Общ кол-во уменьш. = -- ")
         ax.grid(True)
+        ax.legend()
         self.canvas.draw()
+        #счетчики ув. и ум. выводятся на каждом шаге, если он менялся, то счетчик ув.(ум.)
+        #=> если в случилась ситуация пересчета, и шаг менялся несколько раз за итерацию
+        #то выведится то число сколько раз он менялся, => если шаг не менялся выводится
+        #значение ув.(ум.) предыдушей итерации!!!
+
         #координата х численного решения с некоторого шага отличается от координаты х
         #точного решения из - за пересчеста чтоки с учетом ЛП, т.е. в некоторый момент
         #в ЧР ЛП в некоторый момент > чем указанная окрустность => происходит пересчет
