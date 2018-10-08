@@ -30,7 +30,7 @@ class Ui_MainWindow(object):
         self.pushButton.setGeometry(QtCore.QRect(10, 490, 201, 61))
         self.pushButton.setObjectName("pushButton")
         self.textBrowser_2 = QtWidgets.QTextBrowser(self.centralwidget)
-        self.textBrowser_2.setGeometry(QtCore.QRect(640, 30, 381, 101))
+        self.textBrowser_2.setGeometry(QtCore.QRect(530, 40, 381, 101))
         self.textBrowser_2.setObjectName("textBrowser_2")
         self.Widget = QtWidgets.QWidget(self.centralwidget)
         self.Widget.setGeometry(QtCore.QRect(540, 190, 571, 481))
@@ -41,10 +41,10 @@ class Ui_MainWindow(object):
         self.Widget.setSizePolicy(sizePolicy)
         self.Widget.setObjectName("Widget")
         self.label_9 = QtWidgets.QLabel(self.centralwidget)
-        self.label_9.setGeometry(QtCore.QRect(540, 10, 571, 21))
+        self.label_9.setGeometry(QtCore.QRect(590, 10, 261, 21))
         self.label_9.setObjectName("label_9")
         self.verticalLayoutWidget_2 = QtWidgets.QWidget(self.centralwidget)
-        self.verticalLayoutWidget_2.setGeometry(QtCore.QRect(160, 10, 151, 181))
+        self.verticalLayoutWidget_2.setGeometry(QtCore.QRect(160, 10, 151, 227))
         self.verticalLayoutWidget_2.setObjectName("verticalLayoutWidget_2")
         self.verticalLayout_5 = QtWidgets.QVBoxLayout(self.verticalLayoutWidget_2)
         self.verticalLayout_5.setContentsMargins(0, 0, 0, 0)
@@ -64,7 +64,7 @@ class Ui_MainWindow(object):
         self.textEdit_10.setObjectName("textEdit_10")
         self.verticalLayout_5.addWidget(self.textEdit_10)
         self.verticalLayoutWidget = QtWidgets.QWidget(self.centralwidget)
-        self.verticalLayoutWidget.setGeometry(QtCore.QRect(10, 10, 141, 341))
+        self.verticalLayoutWidget.setGeometry(QtCore.QRect(10, 10, 141, 429))
         self.verticalLayoutWidget.setObjectName("verticalLayoutWidget")
         self.verticalLayout_4 = QtWidgets.QVBoxLayout(self.verticalLayoutWidget)
         self.verticalLayout_4.setContentsMargins(0, 0, 0, 0)
@@ -100,7 +100,7 @@ class Ui_MainWindow(object):
         self.textEdit_3.setObjectName("textEdit_3")
         self.verticalLayout_4.addWidget(self.textEdit_3)
         self.verticalLayoutWidget_3 = QtWidgets.QWidget(self.centralwidget)
-        self.verticalLayoutWidget_3.setGeometry(QtCore.QRect(320, 10, 151, 211))
+        self.verticalLayoutWidget_3.setGeometry(QtCore.QRect(320, 10, 153, 256))
         self.verticalLayoutWidget_3.setObjectName("verticalLayoutWidget_3")
         self.verticalLayout_6 = QtWidgets.QVBoxLayout(self.verticalLayoutWidget_3)
         self.verticalLayout_6.setContentsMargins(0, 0, 0, 0)
@@ -147,6 +147,12 @@ class Ui_MainWindow(object):
         self.checkBox_2 = QtWidgets.QCheckBox(self.verticalLayoutWidget_4)
         self.checkBox_2.setObjectName("checkBox_2")
         self.verticalLayout.addWidget(self.checkBox_2)
+        self.textBrowser = QtWidgets.QTextBrowser(self.centralwidget)
+        self.textBrowser.setGeometry(QtCore.QRect(920, 40, 256, 101))
+        self.textBrowser.setObjectName("textBrowser")
+        self.label = QtWidgets.QLabel(self.centralwidget)
+        self.label.setGeometry(QtCore.QRect(930, 10, 241, 20))
+        self.label.setObjectName("label")
         MainWindow.setCentralWidget(self.centralwidget)
         self.statusbar = QtWidgets.QStatusBar(MainWindow)
         self.statusbar.setObjectName("statusbar")
@@ -230,4 +236,15 @@ class Ui_MainWindow(object):
 "<p style=\" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;\">0.0001</p></body></html>"))
         self.checkBox.setText(_translate("MainWindow", "Контроль ЛП"))
         self.checkBox_2.setText(_translate("MainWindow", "Очистка графика"))
+        self.textBrowser.setHtml(_translate("MainWindow", "<!DOCTYPE HTML PUBLIC \"-//W3C//DTD HTML 4.0//EN\" \"http://www.w3.org/TR/REC-html40/strict.dtd\">\n"
+"<html><head><meta name=\"qrichtext\" content=\"1\" /><style type=\"text/css\">\n"
+"p, li { white-space: pre-wrap; }\n"
+"</style></head><body style=\" font-family:\'Ubuntu\'; font-size:11pt; font-weight:400; font-style:normal;\">\n"
+"<p align=\"justify\" style=\" margin-top:12px; margin-bottom:12px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;\"><span style=\" font-family:\'Verdana,Helvetica\'; font-size:9pt; color:#000000;\">v</span><span style=\" font-family:\'Verdana,Helvetica\'; font-size:9pt; color:#000000; vertical-align:sub;\">i</span><span style=\" font-family:\'Verdana,Helvetica\'; font-size:9pt; color:#000000;\">+1=v</span><span style=\" font-family:\'Verdana,Helvetica\'; font-size:9pt; color:#000000; vertical-align:sub;\">i</span><span style=\" font-family:\'Verdana,Helvetica\'; font-size:9pt; color:#000000;\">+(k</span><span style=\" font-family:\'Verdana,Helvetica\'; font-size:9pt; color:#000000; vertical-align:sub;\">1</span><span style=\" font-family:\'Verdana,Helvetica\'; font-size:9pt; color:#000000;\">+4k</span><span style=\" font-family:\'Verdana,Helvetica\'; font-size:9pt; color:#000000; vertical-align:sub;\">2</span><span style=\" font-family:\'Verdana,Helvetica\'; font-size:9pt; color:#000000;\">+k</span><span style=\" font-family:\'Verdana,Helvetica\'; font-size:9pt; color:#000000; vertical-align:sub;\">3</span><span style=\" font-family:\'Verdana,Helvetica\'; font-size:9pt; color:#000000;\">)/6,</span></p>\n"
+"<p align=\"justify\" style=\" margin-top:12px; margin-bottom:12px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;\"><span style=\" font-family:\'Verdana,Helvetica\'; font-size:9pt; color:#000000;\">k</span><span style=\" font-family:\'Verdana,Helvetica\'; font-size:9pt; color:#000000; vertical-align:sub;\">1</span><span style=\" font-family:\'Verdana,Helvetica\'; font-size:9pt; color:#000000;\">=hf(x</span><span style=\" font-family:\'Verdana,Helvetica\'; font-size:9pt; color:#000000; vertical-align:sub;\">i</span><span style=\" font-family:\'Verdana,Helvetica\'; font-size:9pt; color:#000000;\">, y</span><span style=\" font-family:\'Verdana,Helvetica\'; font-size:9pt; color:#000000; vertical-align:sub;\">i</span><span style=\" font-family:\'Verdana,Helvetica\'; font-size:9pt; color:#000000;\">),</span></p>\n"
+"<p align=\"justify\" style=\" margin-top:12px; margin-bottom:12px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;\"><span style=\" font-family:\'Verdana,Helvetica\'; font-size:9pt; color:#000000;\">k</span><span style=\" font-family:\'Verdana,Helvetica\'; font-size:9pt; color:#000000; vertical-align:sub;\">2</span><span style=\" font-family:\'Verdana,Helvetica\'; font-size:9pt; color:#000000;\">=hf(x</span><span style=\" font-family:\'Verdana,Helvetica\'; font-size:9pt; color:#000000; vertical-align:sub;\">i</span><span style=\" font-family:\'Verdana,Helvetica\'; font-size:9pt; color:#000000;\">+h/2, v</span><span style=\" font-family:\'Verdana,Helvetica\'; font-size:9pt; color:#000000; vertical-align:sub;\">i</span><span style=\" font-family:\'Verdana,Helvetica\'; font-size:9pt; color:#000000;\">+k</span><span style=\" font-family:\'Verdana,Helvetica\'; font-size:9pt; color:#000000; vertical-align:sub;\">1</span><span style=\" font-family:\'Verdana,Helvetica\'; font-size:9pt; color:#000000;\">/2),</span></p>\n"
+"<p align=\"justify\" style=\" margin-top:12px; margin-bottom:12px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;\"><span style=\" font-family:\'Verdana,Helvetica\'; font-size:9pt; color:#000000;\">k</span><span style=\" font-family:\'Verdana,Helvetica\'; font-size:9pt; color:#000000; vertical-align:sub;\">3</span><span style=\" font-family:\'Verdana,Helvetica\'; font-size:9pt; color:#000000;\">=hf(x</span><span style=\" font-family:\'Verdana,Helvetica\'; font-size:9pt; color:#000000; vertical-align:sub;\">i</span><span style=\" font-family:\'Verdana,Helvetica\'; font-size:9pt; color:#000000;\">+h, v</span><span style=\" font-family:\'Verdana,Helvetica\'; font-size:9pt; color:#000000; vertical-align:sub;\">i</span><span style=\" font-family:\'Verdana,Helvetica\'; font-size:9pt; color:#000000;\">+2k</span><span style=\" font-family:\'Verdana,Helvetica\'; font-size:9pt; color:#000000; vertical-align:sub;\">2</span><span style=\" font-family:\'Verdana,Helvetica\'; font-size:9pt; color:#000000;\">-k</span><span style=\" font-family:\'Verdana,Helvetica\'; font-size:9pt; color:#000000; vertical-align:sub;\">1</span><span style=\" font-family:\'Verdana,Helvetica\'; font-size:9pt; color:#000000;\">),</span></p>\n"
+"<p align=\"justify\" style=\" margin-top:12px; margin-bottom:12px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;\"><span style=\" font-family:\'Verdana,Helvetica\'; font-size:9pt; color:#000000;\">x</span><span style=\" font-family:\'Verdana,Helvetica\'; font-size:9pt; color:#000000; vertical-align:sub;\">i+1</span><span style=\" font-family:\'Verdana,Helvetica\'; font-size:9pt; color:#000000;\">=x</span><span style=\" font-family:\'Verdana,Helvetica\'; font-size:9pt; color:#000000; vertical-align:sub;\">i</span><span style=\" font-family:\'Verdana,Helvetica\'; font-size:9pt; color:#000000;\">+h.</span></p>\n"
+"<p align=\"justify\" style=\"-qt-paragraph-type:empty; margin-top:12px; margin-bottom:12px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;\"><br /></p></body></html>"))
+        self.label.setText(_translate("MainWindow", "Метод Рунге - Кутты - 3 (явный)"))
 

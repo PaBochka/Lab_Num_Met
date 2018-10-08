@@ -137,13 +137,16 @@ class Math_Part(Ui_MainWindow):
             secwin.tableWidget.setItem(i, 11, QtWidgets.QTableWidgetItem(str(cnt_g)))
             x, I = new_point(h, old_x, old_I, i + 1)
             if x > b:
-                #self.progressBar.setValue(100)
+                xlist.append(x)
+                self.progressBar.setValue(100)
                 break
-            ax.plot([old_x, x], [old_I, I], color, label = ["number", x0, I0])
+            ax.plot([old_x, x], [old_I, I], color)
+
             self.progressBar.setValue(i + 1)
             abs_x = x
             abs_I = abs_solution(abs_x, const)
-            ax.plot([old_abs_x, abs_x], [old_abs_I, abs_I], 'r--', markersize = 0.5, label = ["absolute", x0, I0])
+            ax.plot([old_abs_x, abs_x], [old_abs_I, abs_I], 'r--', markersize = 0.5)
+
         #self.progressBar.setValue(100)
         secwin.tableWidget.setItem(n, 7, QtWidgets.QTableWidgetItem(str(abs_I)))
         secwin.tableWidget.setItem(n, 8, QtWidgets.QTableWidgetItem(str(abs_x)))
@@ -169,7 +172,7 @@ class Math_Part(Ui_MainWindow):
             secwin.label_19.setText("Общ кол-во увел. = -- ")
             secwin.label_20.setText("Общ кол-во уменьш. = -- ")
         ax.grid(True)
-        ax.legend()
+        ax.legend((["number", x0, I0], ["absolute", x0, I0]))
         self.canvas.draw()
         #счетчики ув. и ум. выводятся на каждом шаге, если он менялся, то счетчик ув.(ум.)
         #=> если в случилась ситуация пересчета, и шаг менялся несколько раз за итерацию
